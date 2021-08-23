@@ -2,11 +2,11 @@ stages:
   - deploying-prod
   - deploying-dev
 
-dockerize:
+dockerize-prod:
   stage: deploying-prod
   image:
     name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
+    entrypoint: ['']
   #rules:
   #  - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
   variables:
@@ -20,11 +20,11 @@ dockerize:
       --build-arg NODE_VERSION=$NODE_VERSION
       --destination $CI_REGISTRY_IMAGE:$NODE_VERSION
 
-dockerize:
+dockerize-dev:
   stage: deploying-dev
   image:
     name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
+    entrypoint: ['']
   #rules:
   #  - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
   variables:
