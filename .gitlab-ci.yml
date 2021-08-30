@@ -2,7 +2,7 @@ stages:
   - deploying-prod
   - deploying-dev
 
-dockerize-prod:
+node-14-alpine-prod:
   stage: deploying-prod
   image:
     name: gcr.io/kaniko-project/executor:debug
@@ -20,7 +20,25 @@ dockerize-prod:
       --build-arg NODE_VERSION=$NODE_VERSION
       --destination $CI_REGISTRY_IMAGE:$NODE_VERSION
 
-dockerize-dev:
+node-14-buster-prod:
+  stage: deploying-prod
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: ['']
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  variables:
+    NODE_VERSION: 14-buster
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/prod/Dockerfile
+      --build-arg NODE_VERSION=$NODE_VERSION
+      --destination $CI_REGISTRY_IMAGE:$NODE_VERSION
+
+node-14-alpine-dev:
   stage: deploying-dev
   image:
     name: gcr.io/kaniko-project/executor:debug
