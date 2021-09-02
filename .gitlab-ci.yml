@@ -55,3 +55,21 @@ deploy-node-14-alpine-dev-job:
       --dockerfile $CI_PROJECT_DIR/alpine/dev/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
       --destination $CI_REGISTRY_IMAGE:$NODE_VERSION-dev
+
+deploy-node-14-buster-dev-job:
+  stage: deploy-dev
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: ['']
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  variables:
+    NODE_VERSION: 14-buster
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/buster/dev/Dockerfile
+      --build-arg NODE_VERSION=$NODE_VERSION
+      --destination $CI_REGISTRY_IMAGE:$NODE_VERSION-dev
