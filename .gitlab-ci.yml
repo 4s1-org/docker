@@ -18,7 +18,7 @@ deploy-node-14-alpine-prod-job:
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/node/alpine/prod/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
-      --destination $CI_REGISTRY_IMAGE:$NODE_VERSION
+      --destination $CI_REGISTRY_IMAGE/node:$NODE_VERSION
 
 deploy-node-14-buster-prod-job:
   stage: deploy-prod
@@ -36,7 +36,7 @@ deploy-node-14-buster-prod-job:
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/node/buster/prod/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
-      --destination $CI_REGISTRY_IMAGE:$NODE_VERSION
+      --destination $CI_REGISTRY_IMAGE/node:$NODE_VERSION
 
 deploy-node-14-alpine-dev-job:
   stage: deploy-dev
@@ -54,7 +54,7 @@ deploy-node-14-alpine-dev-job:
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/node/alpine/dev/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
-      --destination $CI_REGISTRY_IMAGE:$NODE_VERSION-dev
+      --destination $CI_REGISTRY_IMAGE/node:$NODE_VERSION-dev
 
 deploy-node-14-buster-dev-job:
   stage: deploy-dev
@@ -72,4 +72,4 @@ deploy-node-14-buster-dev-job:
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/node/buster/dev/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
-      --destination $CI_REGISTRY_IMAGE:$NODE_VERSION-dev
+      --destination $CI_REGISTRY_IMAGE/node:$NODE_VERSION-dev
