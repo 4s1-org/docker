@@ -16,7 +16,7 @@ deploy-node-14-alpine-prod-job:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor
       --context $CI_PROJECT_DIR
-      --dockerfile $CI_PROJECT_DIR/alpine/prod/Dockerfile
+      --dockerfile $CI_PROJECT_DIR/node/alpine/prod/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
       --destination $CI_REGISTRY_IMAGE:$NODE_VERSION
 
@@ -34,7 +34,7 @@ deploy-node-14-buster-prod-job:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor
       --context $CI_PROJECT_DIR
-      --dockerfile $CI_PROJECT_DIR/buster/prod/Dockerfile
+      --dockerfile $CI_PROJECT_DIR/node/buster/prod/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
       --destination $CI_REGISTRY_IMAGE:$NODE_VERSION
 
@@ -52,7 +52,7 @@ deploy-node-14-alpine-dev-job:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor
       --context $CI_PROJECT_DIR
-      --dockerfile $CI_PROJECT_DIR/alpine/dev/Dockerfile
+      --dockerfile $CI_PROJECT_DIR/node/alpine/dev/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
       --destination $CI_REGISTRY_IMAGE:$NODE_VERSION-dev
 
@@ -70,6 +70,6 @@ deploy-node-14-buster-dev-job:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor
       --context $CI_PROJECT_DIR
-      --dockerfile $CI_PROJECT_DIR/buster/dev/Dockerfile
+      --dockerfile $CI_PROJECT_DIR/node/buster/dev/Dockerfile
       --build-arg NODE_VERSION=$NODE_VERSION
       --destination $CI_REGISTRY_IMAGE:$NODE_VERSION-dev
