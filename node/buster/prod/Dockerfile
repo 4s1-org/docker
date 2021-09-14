@@ -1,6 +1,4 @@
-ARG NODE_VERSION=unknown
-
-FROM node:${NODE_VERSION}
+FROM node:14-buster
 LABEL maintainer="Steffen <steffen@4s1.de>"
 
 ENV TZ=Europe/Berlin
