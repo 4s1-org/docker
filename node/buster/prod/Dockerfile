@@ -1,4 +1,4 @@
-FROM node:14.17.6-buster
+FROM node:16.9.1-buster
 LABEL maintainer="Steffen <steffen@4s1.de>"
 
 ENV TZ=Europe/Berlin
