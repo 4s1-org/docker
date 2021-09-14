@@ -1,9 +1,8 @@
 stages:
-  - deploy-prod
-  - deploy-dev
+  - deploy
 
 deploy-node-14-alpine-job:
-  stage: deploy-prod
+  stage: deploy
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
@@ -22,7 +21,7 @@ deploy-node-14-alpine-job:
       --destination $CI_REGISTRY_IMAGE/node:14-alpine-dev
 
 deploy-node-14-buster-job:
-  stage: deploy-prod
+  stage: deploy
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
