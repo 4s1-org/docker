@@ -1,7 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>4s1/renovate-config"],
-  "dockerfile": {
-    "fileMatch": ["node/buster/prod/Dockerfile", "node/alpine/prod/Dockerfile"]
-  }
+  "extends": ["local>4s1/renovate-config"]
 }
