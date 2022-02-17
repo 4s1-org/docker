@@ -7,7 +7,7 @@ deploy-node-14-alpine-job:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
@@ -26,7 +26,7 @@ deploy-node-14-buster-job:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
@@ -38,3 +38,18 @@ deploy-node-14-buster-job:
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/node/buster/dev/Dockerfile
       --destination $CI_REGISTRY_IMAGE/node:14-buster-dev
+
+deploy-sonarlint-cli-job:
+  stage: deploy
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: ['']
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/sonarlint-cli/Dockerfile
+      --destination $CI_REGISTRY_IMAGE/sonarlint-cli:latest
