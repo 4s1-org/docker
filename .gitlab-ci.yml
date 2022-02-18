@@ -9,8 +9,8 @@ deploy-node-14-alpine-job:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       changes:
-        - $CI_PROJECT_DIR/node/alpine/prod/Dockerfile
-        - $CI_PROJECT_DIR/node/alpine/dev/Dockerfile
+        - node/alpine/prod/Dockerfile
+        - node/alpine/dev/Dockerfile
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
@@ -31,8 +31,8 @@ deploy-node-14-buster-job:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       changes:
-        - $CI_PROJECT_DIR/node/buster/prod/Dockerfile
-        - $CI_PROJECT_DIR/node/buster/dev/Dockerfile
+        - node/buster/prod/Dockerfile
+        - node/buster/dev/Dockerfile
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
