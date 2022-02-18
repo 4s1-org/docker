@@ -53,7 +53,7 @@ deploy-sonarlint-cli-job:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       changes:
-        - $CI_PROJECT_DIR/sonarlint-cli/Dockerfile
+        - sonarlint-cli/Dockerfile
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
