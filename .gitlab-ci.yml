@@ -1,8 +1,8 @@
 stages:
-  - deploy
+  - docker
 
 node-14-alpine:
-  stage: deploy
+  stage: docker
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
@@ -24,7 +24,7 @@ node-14-alpine:
       --destination $CI_REGISTRY_IMAGE/node:14-alpine-dev
 
 node-14-buster:
-  stage: deploy
+  stage: docker
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
@@ -46,7 +46,7 @@ node-14-buster:
       --destination $CI_REGISTRY_IMAGE/node:14-buster-dev
 
 sonarlint-cli:
-  stage: deploy
+  stage: docker
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
@@ -63,7 +63,7 @@ sonarlint-cli:
       --destination $CI_REGISTRY_IMAGE/sonarlint-cli:latest
 
 golang-alpine:
-  stage: deploy
+  stage: docker
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
@@ -80,7 +80,7 @@ golang-alpine:
       --destination $CI_REGISTRY_IMAGE/golang:latest
 
 renovate:
-  stage: deploy
+  stage: docker
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: ['']
