@@ -79,7 +79,7 @@ golang-alpine:
       --dockerfile $CI_PROJECT_DIR/golang/Dockerfile
       --destination $CI_REGISTRY_IMAGE/golang:latest
 
-renovate:
+.renovate:
   stage: docker
   image:
     name: gcr.io/kaniko-project/executor:debug
