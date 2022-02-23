@@ -97,4 +97,5 @@ renovate:
     - /kaniko/executor
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/renovate/Dockerfile
+      --destination $CI_REGISTRY_IMAGE/renovate:latest
       --no-push
