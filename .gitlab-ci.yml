@@ -78,3 +78,24 @@ golang-alpine:
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/golang/Dockerfile
       --destination $CI_REGISTRY_IMAGE/golang:latest
+
+renovate:
+  stage: deploy
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: ['']
+  # Image must be available on azure host
+  tags:
+    - 4s1
+    - azure
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      changes:
+        - renovate/Dockerfile
+  script:
+    - mkdir -p /kaniko/.docker
+    #- echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n ${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/renovate/Dockerfile
+    #  --destination $CI_REGISTRY_IMAGE/renovate:latest
