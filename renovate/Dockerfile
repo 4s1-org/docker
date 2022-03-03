@@ -1,2 +1,2 @@
-FROM renovate/renovate:31.94.0
+FROM renovate/renovate:31.97.3
 # xdfghjasdfhjkhjk
