@@ -1,4 +1,4 @@
-FROM node:14.19.0-alpine
+FROM node:14.19.1-alpine
 LABEL maintainer="Steffen <steffen@4s1.de>"
 
 ENV TZ=Europe/Berlin
