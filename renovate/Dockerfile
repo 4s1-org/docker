@@ -1,1 +1,1 @@
-FROM renovate/renovate:32.35.1
+FROM renovate/renovate:32.66.5
